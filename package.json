@@ -1,0 +1,26 @@
+{
+  "name": "@forest.host/broker",
+  "version": "0.0.1",
+  "description": "ETCD3 job queue",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "mocha ./test/**/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/suprasoil/broker.git"
+  },
+  "author": "Johan Schuijt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/suprasoil/broker/issues"
+  },
+  "homepage": "https://github.com/suprasoil/broker#readme",
+  "devDependencies": {
+    "better-assert": "^1.0.2",
+    "mocha": "^7.0.0"
+  },
+  "dependencies": {
+    "@forest.host/etcd3": "^0.2.13"
+  }
+}

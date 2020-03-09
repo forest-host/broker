@@ -6,6 +6,7 @@ import { CampaignState } from '@forest.host/etcd3';
 const broker = new Broker({
   // Speed it up
   timeout: 1,
+  verbosity: 0,
 });
 
 describe('Broker', () => {

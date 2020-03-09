@@ -11,6 +11,7 @@ export class Broker {
         hosts: "http://127.0.0.1:2379",
       },
       queue: 'default',
+      verbosity: 1,
       timeout: 3,
       campaign: {
         value: os.hostname(),
@@ -31,7 +32,13 @@ export class Broker {
     }
 
     // Keep handle of listener, as we need to cancel listener on detach
-    this.listener = this.attach.bind(this);
+    this.listener = () => {
+      if(this.config.verbosity > 0) {
+        console.log('Resigned! Reattaching...')
+      }
+
+      return this.attach();
+    };
 
     // When resigned, recampaign
     this.election.once('resigned', this.listener);

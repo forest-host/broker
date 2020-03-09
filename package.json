@@ -1,7 +1,7 @@
 {
   "name": "@forest.host/broker",
-  "version": "0.0.1",
-  "description": "ETCD3 job queue",
+  "version": "0.1.1",
+  "description": "ETCD3 backed job queue",
   "main": "lib/index.js",
   "scripts": {
     "test": "mocha ./test/**/* --require @babel/register",

@@ -1,6 +1,6 @@
 {
   "name": "@forest.host/broker",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "ETCD3 backed job queue",
   "main": "lib/index.js",
   "scripts": {

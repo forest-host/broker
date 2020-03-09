@@ -31,7 +31,7 @@
     "mocha": "^7.1.0"
   },
   "dependencies": {
-    "@forest.host/etcd3": "^0.2.19",
+    "@forest.host/etcd3": "^0.2.20",
     "@forest.host/extend": "^1.0.2",
     "why-is-node-running": "^2.1.2"
   }

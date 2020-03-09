@@ -2,9 +2,10 @@
   "name": "@forest.host/broker",
   "version": "0.0.1",
   "description": "ETCD3 job queue",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "scripts": {
-    "test": "mocha ./test/**/*.js"
+    "test": "mocha ./test/**/* --require @babel/register",
+    "prepublish": "babel src -d lib"
   },
   "repository": {
     "type": "git",
@@ -16,11 +17,21 @@
     "url": "https://github.com/suprasoil/broker/issues"
   },
   "homepage": "https://github.com/suprasoil/broker#readme",
+  "babel": {
+    "plugins": [
+      "@babel/plugin-transform-modules-commonjs"
+    ]
+  },
   "devDependencies": {
-    "better-assert": "^1.0.2",
-    "mocha": "^7.0.0"
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.7",
+    "@babel/plugin-transform-modules-commonjs": "^7.8.3",
+    "@babel/register": "^7.8.6",
+    "chai": "^4.2.0",
+    "mocha": "^7.1.0"
   },
   "dependencies": {
-    "@forest.host/etcd3": "^0.2.13"
+    "@forest.host/etcd3": "^0.2.19",
+    "@forest.host/extend": "^1.0.2"
   }
 }

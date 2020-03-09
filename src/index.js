@@ -6,11 +6,15 @@ import { ElectionError } from './errors.js';
 
 export class Broker {
   constructor(config = {}) {
+    // Mandatory config
+    if( ! config.hasOwnProperty('queue')) {
+      throw new Error("Mandatory config attribute 'queue' not set");
+    }
+
     const defaults = {
       etcd: {
         hosts: "http://127.0.0.1:2379",
       },
-      queue: 'default',
       verbosity: 1,
       timeout: 3,
       campaign: {

@@ -5,6 +5,7 @@ import { CampaignState } from '@forest.host/etcd3';
 
 const broker = new Broker({
   // Speed it up
+  queue: 'default',
   timeout: 1,
   verbosity: 0,
 });

@@ -38,4 +38,13 @@ describe('Broker', () => {
       assert.equal(broker.election.isIdle(), true);
     })
   })
-})
+
+  describe('is_leader()', () => {
+    before(() => broker.attach());
+    after(() => broker.detach());
+
+    it('Returns wether broker is leader', () => {
+      assert.equal(broker.is_leader(), true);
+    })
+  })
+}) 

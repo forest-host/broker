@@ -45,7 +45,6 @@ export class Broker {
     return this.election.campaign(this.config.campaign.value);
   }
 
-  // TODO - Detach reattach listener
   detach() {
     if(this.election.isIdle()) {
       throw new ElectionError('Broker is not attached to queue');
@@ -54,5 +53,9 @@ export class Broker {
     this.election.off('resigned', this.listener);
 
     return this.election.resign();
+  }
+
+  is_leader() {
+    return this.election.isLeading();
   }
 }

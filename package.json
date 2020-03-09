@@ -4,7 +4,7 @@
   "description": "ETCD3 backed job queue",
   "main": "lib/index.js",
   "scripts": {
-    "test": "mocha ./test/**/* --require @babel/register",
+    "test": "mocha ./test/**/* --require @babel/register --exit",
     "prepublish": "babel src -d lib"
   },
   "repository": {
@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "@forest.host/etcd3": "^0.2.19",
-    "@forest.host/extend": "^1.0.2"
+    "@forest.host/extend": "^1.0.2",
+    "why-is-node-running": "^2.1.2"
   }
 }

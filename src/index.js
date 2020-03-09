@@ -27,6 +27,12 @@ export class Broker {
 
     // Create campaign
     this.election = this.etcd.election(this.config.queue, this.config.timeout);
+
+    if(this.config.verbosity > 0) {
+      this.election
+        .on('leading', () => console.log(`${this.config.campaign.value} is now leading the ${this.config.queue} queue`))
+        .on('following', () => console.log(`${this.config.campaign.value} is now following the ${this.config.queue} queue`));
+    }
   }
 
   // Join election / queue
@@ -38,7 +44,7 @@ export class Broker {
     // Keep handle of listener, as we need to cancel listener on detach
     this.listener = () => {
       if(this.config.verbosity > 0) {
-        console.log('Resigned! Reattaching...')
+        console.log(`${this.config.campaign.value} somehow resigned! Reattaching...`);
       }
 
       return this.attach();

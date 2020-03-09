@@ -26,7 +26,7 @@ describe('Broker', () => {
       assert.equal(broker.election.isLeading(), true);
     })
 
-    it('Retries campaigning on no connection');
+    //it('Retries campaigning on no connection');
   })
 
   describe('detach()', () => {

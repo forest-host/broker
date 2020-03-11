@@ -29,6 +29,10 @@ export class Broker {
     this.election = this.etcd.election(this.config.queue, this.config.timeout);
 
     if(this.config.verbosity > 0) {
+      this.election.lease.on('lost', () => {
+        console.log(`${this.config.campaign.value} lost lease`);
+      });
+
       this.election
         .on('leading', () => console.log(`${this.config.campaign.value} is now leading the ${this.config.queue} queue`))
         .on('following', () => console.log(`${this.config.campaign.value} is now following the ${this.config.queue} queue`));
@@ -36,10 +40,13 @@ export class Broker {
   }
 
   // Join election / queue
-  attach() {
+  async attach() {
     if( ! this.election.isIdle()) {
       throw new ElectionError('Broker already attached to queue');
     }
+
+    // Wait for campaig before attaching event listener, as listener can be triggered multiple times by multiple 'resigned' events
+    await this.election.campaign(this.config.campaign.value);
 
     // Keep handle of listener, as we need to cancel listener on detach
     this.listener = () => {
@@ -50,9 +57,8 @@ export class Broker {
       return this.attach();
     };
 
-    // When resigned, recampaign
+    // When election resigned, re-attach as we should still be attached
     this.election.once('resigned', this.listener);
-    return this.election.campaign(this.config.campaign.value);
   }
 
   detach() {

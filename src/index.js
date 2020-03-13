@@ -46,7 +46,20 @@ export class Broker {
     }
 
     // Wait for campaig before attaching event listener, as listener can be triggered multiple times by multiple 'resigned' events
-    await this.election.campaign(this.config.campaign.value);
+    try {
+      await this.election.campaign(this.config.campaign.value);
+    } catch(err) {
+      const is_timed_out = err.message.indexOf('request timed out') != -1;
+
+      // When attach request timed out, wait for a bit and retry
+      if(is_timed_out) {
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        return this.attach();
+      } else {
+        // Something is seriously wrong
+        throw err;
+      }
+    }
 
     // Keep handle of listener, as we need to cancel listener on detach
     this.listener = () => {

@@ -4,7 +4,7 @@
   "description": "ETCD3 backed job queue",
   "main": "lib/index.js",
   "scripts": {
-    "test": "mocha ./test/**/* --require @babel/register --exit",
+    "test": "mocha ./test/**/* --require @babel/register --exit --timeout 100000000",
     "prepublish": "babel src -d lib"
   },
   "repository": {

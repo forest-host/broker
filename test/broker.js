@@ -59,7 +59,8 @@ describe('Broker', () => {
       await broker1.detach();
     })
 
-    it('Retries campaigning on no connection');
+    // TODO - how to test this?
+    it('Retries campaigning on request time out');
   })
 
   describe('detach()', () => {

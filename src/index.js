@@ -53,6 +53,10 @@ export class Broker {
 
       // When attach request timed out, wait for a bit and retry
       if(is_timed_out) {
+        if(this.config.verbosity > 0) {
+          console.log(`${this.config.campaign.value} could not attach to queue due to time-out, retrying...`);
+        }
+
         await new Promise(resolve => setTimeout(resolve, 1000));
         return this.attach();
       } else {
